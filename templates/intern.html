@@ -1,0 +1,86 @@
+{% extends 'basic.html' %}
+{% block title %}
+Internship 
+{% endblock title %}
+{% block stylecss %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock stylecss %}
+{% block body %}
+<section id="login" class="signup">
+    <div class="section-heading text-center">
+        <h2>login</h2>
+    </div>
+    <div class="container">
+        <div class="about-content">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="single-login-txt">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4">
+                                    <h4 class="text-white bg-dark text-center p-3"> Please fill out yours details Carefully </h4>
+                                    <div class="card">
+                                        <!-- Display messages (success or error) -->
+                                        {% if messages %}
+                                        <div class="alert alert-info">
+                                            {% for message in messages %}
+                                                <p>{{ message }}</p>
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                        <form action='/internshipdetails' method='post'>{% csrf_token %}
+
+                                            <div class="form-group">
+                                                <label for="name">Full Name</label>
+                                                <input type="name" class="form-control" id="name" name="name" required>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="email" class="form-control" id="email" name="email" required>
+
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="usn">U.S.N</label>
+                                                <input type="text" "class="form-control" id="usn" name="usn" required>
+
+                                            </div>
+                                        
+                                            <label for="cname">College Name.</label>
+                                            <input type="text" class="form-control" id="cname" name="cname" required title="Enter your college name" placeholder="Enter your college name">
+
+                                            <label for="offer">Did you received offer letter </label>
+                                            <input type="text" class="form-control" id="offer" name="offer" required title="Did you received" placeholder="Did you received">
+                                            
+                                            
+
+                                            <label for="enddate"> End Date </label>
+                                            <input type="date" class="form-control" id="enddate" name="enddate" required title="enter end date" placeholder="enter end date "> 
+
+                                            <label for="projreport">Did you want Project and Report </label>
+                                            <input type="text" class="form-control" id="projreport" name="projreport" required title="Did you received" placeholder="Did you received">
+                                            
+                                            <div class="d-grid gap-2">
+                                                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+                                            </div>
+
+                                            
+                                        </form>
+                                        
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock body %}

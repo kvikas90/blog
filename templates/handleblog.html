@@ -1,0 +1,65 @@
+{% extends 'basic.html' %}
+{% block title %}
+Blog
+{% endblock title %}
+{% block stylecss %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+    /* Additional styles to center and adjust the section */
+    .section-heading {
+        margin-top: 50px;
+        margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        text-align: center;
+        color: #333;
+    }
+
+    .blog-section {
+        padding: 50px 0; /* Add padding to the section to move it further down */
+    }
+
+    .card {
+        border: none;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: scale(1.05); /* Add a hover effect */
+    }
+</style>
+{% endblock stylecss %}
+{% block body %}
+<section id="blog" class="blog-section">
+    <div class="section-heading text-center">
+        <h2>Welcome to My Blog</h2>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!-- Iterate over posts and display each post in a grid layout -->
+            {% for post in posts %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card shadow-sm">
+                    <!-- If there is an image, display it -->
+                    {% if post.img %}
+                    <img src="{{ post.img.url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% else %}
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Placeholder Image">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                        <p class="card-text">Posted by <b>{{ post.authname }}</b> on <b>{{ post.timeStamp|date:"F d, Y" }}</b></p>
+                        <p class="card-text">{{ post.description|truncatewords:20 }}</p> <!-- Truncate description to first 20 words -->
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock body %}
+
